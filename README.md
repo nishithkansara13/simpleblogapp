@@ -17,12 +17,13 @@ Python 3.6.9
 (1) SuperUser Authentication:
 
 user: nishith
+
 pwd: Nishith@123
 
 (2) Blog User
 
 user: user1
-pwd: qqwwaasszzxx
 
 user:user2
-pwd: qqwwaasszzxx
+
+pwd for both user: qqwwaasszzxx
