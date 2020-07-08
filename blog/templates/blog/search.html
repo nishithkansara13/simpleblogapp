@@ -1,0 +1,10 @@
+
+<div class="sidebar-box pt-md-4">
+  <form action="{% url 'blog:index' %}" class="search-form">
+    <div class="form-group">
+      <span class="icon icon-search"></span>
+      <input type="text" class="form-control" placeholder="Search keyword" name="search">
+      <input type="hidden" class="form-control" name="category" value="{% if category %}{{ category }}{% endif %}">
+    </div>
+  </form>
+</div>

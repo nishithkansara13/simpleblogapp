@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block main %}
+		<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-lg-10 px-md-5 py-5">
+	    				<div class="row pt-md-4">
+	    					<h1 class="mb-3 col-12">{{ blog.blog_title }}</h1>
+	    					<div class="meta-wrap">
+								<p class="meta">
+	              					<span><i class="icon-calendar mr-2"></i>{{ blog.blog_created_date }}</span>&nbsp;
+	              					<span><i class="icon-folder-o mr-2"></i>{{ blog.blog_category.category_title }}</span> &nbsp;
+	              					<span><i class="icon-user mr-2"></i>By {{ blog.blog_user.username }}</span>
+	              				</p>
+              				</div>
+	    					<div class="col-12 text-center">
+	    					<img src="{% if blog.blog_image %}{{ blog.blog_image.url  }}{% else %}{{ default_image }}{% endif %}" alt="" class="img-fluid">
+	    					</div>
+		            		<div>
+		            			{{ blog.blog_content }}
+		            		</div>
+		            		<div>
+		            			<a href="{% url 'blog:index' %}"> << Back </a>
+		            		</div>
+	    				</div><!-- END-->
+			    	</div>
+
+	    		</div>
+	    	</div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+{% endblock %}

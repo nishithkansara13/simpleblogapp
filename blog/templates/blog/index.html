@@ -1,0 +1,71 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block main %}
+		<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+	    				<div class="row pt-md-4">
+
+	    					{% if blogs %}
+	    					{% for blog in blogs %}
+			    			<div class="col-md-12">
+								<div class="blog-entry ftco-animate d-md-flex">
+									<a href="#" class="img img-2" style="background-image: url({% if blog.blog_image %}{{ blog.blog_image.url  }}{% else %}{{ default_image }}{% endif %});">
+									</a>
+									<div class="text text-2 pl-md-4">
+				              			<h3 class="mb-2">
+				              				<a href="#">{{ blog.blog_title }}</a>
+				              			</h3>
+				              			<div class="meta-wrap">
+											<p class="meta">
+				              					<span><i class="icon-calendar mr-2"></i>{{ blog.blog_created_date }}</span>
+				              					<span><a href="#"><i class="icon-folder-o mr-2"></i>{{ blog.blog_category.category_title }}</a></span>
+				              				</p>
+			              				</div>
+
+				              			<p class="mb-4">{{ blog.blog_content | get_n_characters}}</p>
+
+				              			<p><a href="{% url 'blog:detail' blog.id %}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            		</div>
+								</div>
+							</div>
+							{% endfor %}
+							{% endif %}
+							
+
+			    		</div><!-- END-->
+		    		<div class="row">
+			          <div class="col">
+			            <div class="block-27">
+			              <ul>
+			                {% if blogs.has_previous %}
+			                    <li><a href="?page={{ blogs.previous_page_number }}{% if category %}&category={{category}}{% endif %}{% if search %}&search={{ search }}{% endif %}">&lt;</a></li>
+			                {% endif %}
+			             
+			                {% for pg in blogs.paginator.page_range %}
+			                    <li class='{% if page %}{% if page|stringformat:"s" == pg|stringformat:"s" %}active{% endif %}{% else %}{% if pg == 1 %}active{% endif %}{% endif %}'><a href="?page={{ pg }}{% if category %}&category={{category}}{% endif %}{% if search %}&search={{ search }}{% endif %}">{{ pg }}</a></li>
+			                {% endfor %}
+
+			                {% if blogs.has_next %}
+			                    <li><a href="?page={{ blogs.next_page_number }}{% if category %}&category={{category}}{% endif %}{% if search %}&search={{ search }}{% endif %}">&gt;</a></li>
+			                {% endif %}
+
+			              </ul>
+			            </div>
+			          </div>
+			        </div>
+		    	</div>
+
+			    	<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+			    	{% include 'blog/search.html' %}	
+					{% include 'blog/sidebar.html' %}
+					</div>
+	    		</div>
+	    	</div>
+	    </section>
+	</div>
+  {% endblock %}		

@@ -1,0 +1,13 @@
+
+<div class="sidebar-box ftco-animate">
+	<h3 class="sidebar-heading">Categories</h3>
+  <ul class="categories">
+  	{% if categories %}
+  		<li><a href="{% url 'blog:index' %}"> All </a></li>
+  		
+  		{% for category in categories %}
+  			<li><a href="?category={{ category.id }}">{{ category }} <span>({{ category.blog_set.count }})</span></a></li>
+  		{% endfor %}
+  	{% endif %}
+  </ul>
+</div>
