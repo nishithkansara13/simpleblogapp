@@ -15,6 +15,7 @@ Python 3.6.9
 - We have customized a django admin panel functionality in a way that we don't have need to create login functionality and blog management functionality from the front-side. Inspite of doing the work on those simple functionality, we used default django admin panel login functionality for managing the user specific data.
 
 (1) SuperUser Authentication:
+
 user: nishith
 pwd: Nishith@123
 
